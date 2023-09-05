@@ -8,9 +8,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-18.04 ]
+        os: [ ubuntu-22.04 ]
         include:
-          - os: ubuntu-18.04
+          - os: ubuntu-22.04
             python-arch: "x64"
             python-version: "3.6.x"
             install-headerfiles: true

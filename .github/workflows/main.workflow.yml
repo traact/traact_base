@@ -8,14 +8,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-18.04 ]
+        os: [ ubuntu-22.04 ]
         include:
-          - os: ubuntu-18.04
+          - os: ubuntu-22.04
             python-arch: "x64"
             python-version: "3.6.x"
             install-headerfiles: true
             prepare-python: true
-            conan_base_profile: "linux-gcc7-amd64"
+            conan_base_profile: "default"
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@master
