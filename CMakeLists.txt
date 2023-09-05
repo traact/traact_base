@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.16)
+
+
+project(${CONAN_PACKAGE_NAME}_PROJECT VERSION ${CONAN_PACKAGE_VERSION})
+
+
+install(DIRECTORY "./cmake" DESTINATION "${CMAKE_INSTALL_PREFIX}" FILES_MATCHING
+        PATTERN "*.cmake")
