@@ -1,6 +1,6 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeToolchain, cmake_layout, CMakeDeps
-from conan.tools.files import collect_libs
+from conan.tools.files import collect_libs, copy
 from conan.tools.env import Environment
 from conan.tools import CppInfo
 from conan.tools.env import VirtualRunEnv
@@ -117,12 +117,17 @@ class TraactGeneratorPackage(ConanFile):
     url = "https://github.com/traact/traact_base.git"
     license = "MIT"
     description = "conan base for traact libraries with some utils for conan and cmake setup"
-        
-    exports_sources = "CMakeLists.txt","cmake/*"
+    
+    no_copy_source = True    
+    exports_sources = "include/*"
 
     def build(self):
         pass
 
+    def package(self):
+        copy(self, "*.cmake", src=self.source_folder, dst=self.package_folder)
+
     def package_info(self):
-        self.cpp_info.libs = []
+        self.cpp_info.bindirs = []
+        self.cpp_info.libdirs = []
     
