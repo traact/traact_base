@@ -35,7 +35,6 @@ jobs:
           path: main
       - name: Export package
         run: |
-          conan user
           conan config install https://github.com/traact/bincrafters-config.git
           conan export . --user traact --channel latest
       - name: Upload Package
