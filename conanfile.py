@@ -24,7 +24,7 @@ class TraactPackageCmake(object):
         return lib_paths
 
     def is_editable(self):
-        return self.package_folder != None 
+        return self.plugin_build_folder.startswith(self.package_folder)
 
     def layout(self):        
         cmake_layout(self)
