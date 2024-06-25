@@ -9,7 +9,16 @@ import os
 class TraactPackageCmake(object):
     """
     Base class for all traact libraries
-    """        
+    """
+
+    options = {
+        "buildWorkspace": [True, False]
+    }
+
+    default_options = {
+        "buildWorkspace": False
+    }
+
 
     def traact_env_items(self):
         lib_paths = []
@@ -24,7 +33,7 @@ class TraactPackageCmake(object):
         return lib_paths
 
     def is_editable(self):
-        return self.plugin_build_folder.startswith(self.package_folder)
+        return self.options.buildWorkspace  #self.plugin_build_folder.startswith(self.package_folder)
 
     def layout(self):        
         cmake_layout(self)

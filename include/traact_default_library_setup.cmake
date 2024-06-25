@@ -34,7 +34,7 @@ endif ()
 if (WITH_CUDA)
     include(CheckLanguage)
     check_language(CUDA)
-    enable_language(CUDA)
+
     if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
         set(CMAKE_CUDA_ARCHITECTURES 75)
     endif()
@@ -42,6 +42,8 @@ if (WITH_CUDA)
     if(NOT DEFINED CMAKE_CUDA_STANDARD)
         set(CMAKE_CUDA_STANDARD 17)
         set(CMAKE_CUDA_STANDARD_REQUIRED ON)
-    endif()    
+    endif()
+
+    enable_language(CUDA)
 endif ()
 
