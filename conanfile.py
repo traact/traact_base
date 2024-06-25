@@ -16,7 +16,7 @@ class TraactPackageCmake(object):
     }
 
     default_options = {
-        "buildWorkspace": False
+        "buildWorkspace": True
     }
 
 
@@ -33,9 +33,14 @@ class TraactPackageCmake(object):
         return lib_paths
 
     def is_editable(self):
-        return self.options.buildWorkspace  #self.plugin_build_folder.startswith(self.package_folder)
+        return False #self.options.buildWorkspace  #self.plugin_build_folder.startswith(self.package_folder)
 
-    def layout(self):        
+    def init(self):
+        base = self.python_requires["traact_base"].module.TraactPackageCmake
+        # Note we pass the base options and default_options
+        self.options.update(base.options, base.default_options)
+
+    def layout(self):
         cmake_layout(self)
 
     def generate(self):        
@@ -57,13 +62,12 @@ class TraactPackageCmake(object):
         deps.generate()        
         
         runenv = VirtualRunEnv(self)
-        runenv.generate()  
+        runenv.generate()
 
-        self.plugin_build_folder = self.build_folder            
-
-        self._extend_generate()            
+        self._extend_generate()
 
     def build(self):
+        self.plugin_build_folder = self.build_folder
         cmake = CMake(self)
         self._before_configure()
         cmake.configure()
